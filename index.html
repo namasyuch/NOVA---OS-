@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOVA OS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main id="desktop">
+
+        <!-- Top Bar -->
+
+        <header id="topbar">
+
+            <div class="brand">
+                NOVA
+            </div>
+
+            <div class="top-info">
+                <span id="date">Loading...</span>
+                <span id="time">--:--</span>
+            </div>
+
+        </header>
+
+
+        <!-- Desktop -->
+
+        <section id="desktop-area">
+
+            <div class="welcome-text">
+                <p>PERSONAL WEB OS</p>
+
+                <h1>NOVA</h1>
+
+                <span>Explore. Create. Learn.</span>
+            </div>
+
+
+            <!-- Desktop Icons -->
+
+            <div class="desktop-icons">
+
+                <div class="app-icon" data-window="welcome">
+                    <div class="icon-box">◈</div>
+                    <span>Welcome</span>
+                </div>
+
+                <div class="app-icon" data-window="notes">
+                    <div class="icon-box">✎</div>
+                    <span>Notes</span>
+                </div>
+
+                <div class="app-icon" data-window="calculator">
+                    <div class="icon-box">▦</div>
+                    <span>Calculator</span>
+                </div>
+
+                <div class="app-icon" data-window="focus">
+                    <div class="icon-box">◷</div>
+                    <span>Focus</span>
+                </div>
+
+                <div class="app-icon" data-window="projects">
+                    <div class="icon-box">◆</div>
+                    <span>Projects</span>
+                </div>
+
+            </div>
+
+
+            <!-- Bottom Dock -->
+
+            <div id="dock">
+
+                <button onclick="openWindow('welcome')">◈</button>
+                <button onclick="openWindow('notes')">✎</button>
+                <button onclick="openWindow('calculator')">▦</button>
+                <button onclick="openWindow('focus')">◷</button>
+                <button onclick="openWindow('projects')">◆</button>
+                <button onclick="toggleTheme()">☼</button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WELCOME WINDOW ================= -->
+
+        <div class="window" id="welcome-window">
+
+            <div class="window-header">
+
+                <span>Welcome</span>
+
+                <button onclick="closeWindow('welcome')">×</button>
+
+            </div>
+
+            <div class="window-content welcome-content">
+
+                <h2>Welcome to NOVA.</h2>
+
+                <p>
+                    NOVA is my personal web-based operating system.
+                </p>
+
+                <p>
+                    It is built using HTML, CSS and JavaScript.
+                </p>
+
+                <div class="info-card">
+                    <strong>What can you do?</strong>
+
+                    <p>
+                        Open apps, move windows around, write notes,
+                        calculate things, start a focus session and
+                        explore my projects.
+                    </p>
+                </div>
+
+                <p class="small-text">
+                    Tip: Drag the window from its header.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= NOTES WINDOW ================= -->
+
+        <div class="window" id="notes-window">
+
+            <div class="window-header">
+
+                <span>Notes</span>
+
+                <button onclick="closeWindow('notes')">×</button>
+
+            </div>
+
+            <div class="notes-layout">
+
+                <div class="notes-sidebar">
+
+                    <button class="new-note" onclick="addNote()">
+                        + New Note
+                    </button>
+
+                    <div id="notes-list"></div>
+
+                </div>
+
+
+                <div class="notes-main">
+
+                    <input
+                        id="note-title"
+                        type="text"
+                        placeholder="Note title"
+                    >
+
+                    <textarea
+                        id="note-content"
+                        placeholder="Write something..."
+                    ></textarea>
+
+                    <button class="save-button" onclick="saveNote()">
+                        Save Note
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= CALCULATOR WINDOW ================= -->
+
+        <div class="window small-window" id="calculator-window">
+
+            <div class="window-header">
+
+                <span>Calculator</span>
+
+                <button onclick="closeWindow('calculator')">×</button>
+
+            </div>
+
+            <div class="calculator">
+
+                <input
+                    id="calc-display"
+                    type="text"
+                    value="0"
+                    readonly
+                >
+
+
+                <div class="calc-buttons">
+
+                    <button onclick="clearCalculator()">C</button>
+                    <button onclick="addToCalculator('/')">÷</button>
+                    <button onclick="addToCalculator('*')">×</button>
+                    <button onclick="addToCalculator('-')">−</button>
+
+                    <button onclick="addToCalculator('7')">7</button>
+                    <button onclick="addToCalculator('8')">8</button>
+                    <button onclick="addToCalculator('9')">9</button>
+                    <button onclick="addToCalculator('+')">+</button>
+
+                    <button onclick="addToCalculator('4')">4</button>
+                    <button onclick="addToCalculator('5')">5</button>
+                    <button onclick="addToCalculator('6')">6</button>
+                    <button onclick="calculate()">=</button>
+
+                    <button onclick="addToCalculator('1')">1</button>
+                    <button onclick="addToCalculator('2')">2</button>
+                    <button onclick="addToCalculator('3')">3</button>
+                    <button onclick="addToCalculator('.')">.</button>
+
+                    <button class="zero" onclick="addToCalculator('0')">
+                        0
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FOCUS WINDOW ================= -->
+
+        <div class="window small-window" id="focus-window">
+
+            <div class="window-header">
+
+                <span>Focus</span>
+
+                <button onclick="closeWindow('focus')">×</button>
+
+            </div>
+
+            <div class="focus-content">
+
+                <p class="focus-label">
+                    FOCUS SESSION
+                </p>
+
+                <div id="timer">
+                    25:00
+                </div>
+
+                <div class="focus-buttons">
+
+                    <button onclick="startTimer()">
+                        Start
+                    </button>
+
+                    <button onclick="pauseTimer()">
+                        Pause
+                    </button>
+
+                    <button onclick="resetTimer()">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PROJECTS WINDOW ================= -->
+
+        <div class="window projects-window" id="projects-window">
+
+            <div class="window-header">
+
+                <span>Projects</span>
+
+                <button onclick="closeWindow('projects')">×</button>
+
+            </div>
+
+            <div class="projects-content">
+
+                <div class="project-card">
+
+                    <div class="project-top">
+                        <h3>NOVA OS</h3>
+                        <span>ACTIVE</span>
+                    </div>
+
+                    <p>
+                        A browser-based operating system made with
+                        HTML, CSS and JavaScript.
+                    </p>
+
+                    <small>
+                        HTML · CSS · JavaScript
+                    </small>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-top">
+                        <h3>Soil Monitoring System</h3>
+                        <span>DONE</span>
+                    </div>
+
+                    <p>
+                        An Arduino project that monitors soil and
+                        environmental conditions.
+                    </p>
+
+                    <small>
+                        Arduino · Sensors · Web Dashboard
+                    </small>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-top">
+                        <h3>Python Projects</h3>
+                        <span>LEARNING</span>
+                    </div>
+
+                    <p>
+                        Small Python projects built while learning
+                        programming and problem solving.
+                    </p>
+
+                    <small>
+                        Python
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Notification -->
+
+        <div id="notification">
+            <strong>NOVA</strong>
+            <span id="notification-text">
+                Welcome to NOVA OS
+            </span>
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
