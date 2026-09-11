@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #080b12;
+    background: #0d0d0d;
     color: white;
 }
 
@@ -15,9 +15,6 @@ textarea {
     font-family: inherit;
 }
 
-
-/* ================= DESKTOP ================= */
-
 #desktop {
     min-height: 100vh;
     position: relative;
@@ -26,48 +23,38 @@ textarea {
     background-image: url("download (1).jpeg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 
-/* ================= TOP BAR ================= */
-
 #topbar {
-    height: 58px;
-    width: 100%;
+    height: 50px;
+    padding: 0 20px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 24px;
-
-    background: rgba(7, 10, 18, 0.88);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0d0d0d;
+    border-bottom: 1px solid #333;
 
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
 
     z-index: 1000;
 }
 
 .brand {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
-    letter-spacing: 5px;
 }
 
 .top-info {
     display: flex;
-    gap: 18px;
-
-    font-size: 14px;
-    color: #aeb8cc;
+    gap: 15px;
+    font-size: 13px;
+    color: #aaa;
 }
-
-
-/* ================= DESKTOP AREA ================= */
 
 #desktop-area {
     min-height: 100vh;
@@ -81,137 +68,103 @@ textarea {
 
 .welcome-text {
     text-align: center;
-    margin-top: 30px;
 }
 
 .welcome-text p {
+    margin: 0 0 10px;
     font-size: 11px;
-    letter-spacing: 5px;
-    color: #7e8ba4;
+    color: #aaa;
 }
 
 .welcome-text h1 {
-    margin: 10px 0;
-
-    font-size: 72px;
-    letter-spacing: 12px;
+    margin: 0;
+    font-size: 60px;
 }
 
 .welcome-text span {
-    color: #9ba7ba;
-    font-size: 17px;
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #aaa;
 }
-
-
-/* ================= DESKTOP ICONS ================= */
 
 .desktop-icons {
     position: absolute;
-
-    left: 25px;
-    top: 95px;
+    left: 20px;
+    top: 75px;
 
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
 }
 
 .app-icon {
-    width: 75px;
-
+    width: 65px;
     text-align: center;
-
-    cursor: pointer;
-
-    color: #dce2ed;
-
     font-size: 12px;
+    cursor: pointer;
 }
 
 .icon-box {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
 
-    margin: auto;
-    margin-bottom: 7px;
+    margin: 0 auto 5px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 13px;
+    background: #181818;
+    border: 1px solid #444;
+    border-radius: 6px;
 
-    background: rgba(255, 255, 255, 0.09);
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    font-size: 21px;
-
-    transition: 0.2s;
+    font-size: 17px;
 }
 
 .app-icon:hover .icon-box {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.16);
+    background: #242424;
 }
 
 .app-icon.selected .icon-box {
-    background: rgba(255, 255, 255, 0.2);
     border-color: white;
 }
 
-
-/* ================= DOCK ================= */
-
 #dock {
     position: absolute;
-
-    bottom: 22px;
+    bottom: 15px;
     left: 50%;
-
     transform: translateX(-50%);
 
     display: flex;
-    gap: 8px;
+    gap: 5px;
 
-    padding: 9px 12px;
+    padding: 6px;
 
-    background: rgba(8, 11, 18, 0.8);
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    border-radius: 17px;
-
-    backdrop-filter: blur(12px);
+    background: #0d0d0d;
+    border: 1px solid #333;
+    border-radius: 7px;
 
     z-index: 900;
 }
 
 #dock button {
-    width: 43px;
-    height: 43px;
+    width: 38px;
+    height: 38px;
 
-    border: none;
-    border-radius: 11px;
+    border: 0;
+    border-radius: 5px;
 
-    background: rgba(255, 255, 255, 0.08);
-
+    background: #1c1c1c;
     color: white;
 
+    font-size: 16px;
     cursor: pointer;
-
-    font-size: 18px;
-
-    transition: 0.2s;
 }
 
 #dock button:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.18);
+    background: #292929;
 }
-
-
-/* ================= WINDOWS ================= */
 
 .window {
     position: absolute;
@@ -219,51 +172,41 @@ textarea {
     top: 50%;
     left: 50%;
 
-    width: 650px;
-    min-height: 350px;
-
-    background: rgba(16, 20, 31, 0.96);
-
-    border: 1px solid rgba(255, 255, 255, 0.14);
-
-    border-radius: 14px;
-
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
-
-    overflow: hidden;
+    width: 600px;
+    min-height: 330px;
 
     display: none;
+
+    background: #151515;
+    border: 1px solid #444;
+
+    overflow: hidden;
 
     z-index: 10;
 }
 
 .small-window {
-    width: 390px;
+    width: 370px;
     min-height: auto;
 }
 
 .projects-window {
-    width: 600px;
+    width: 560px;
 }
 
-
-/* ================= WINDOW HEADER ================= */
-
 .window-header {
-    height: 48px;
+    height: 42px;
+
+    padding: 0 12px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 15px;
-
-    background: rgba(255, 255, 255, 0.06);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #1b1b1b;
+    border-bottom: 1px solid #333;
 
     cursor: grab;
-
     user-select: none;
 }
 
@@ -272,59 +215,47 @@ textarea {
 }
 
 .window-header span {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
 
 .window-header button {
-    width: 27px;
-    height: 27px;
+    width: 24px;
+    height: 24px;
 
-    border: none;
-    border-radius: 7px;
+    border: 0;
+    background: none;
 
-    background: rgba(255, 255, 255, 0.08);
-
-    color: #dce2ed;
-
+    color: white;
     font-size: 18px;
 
     cursor: pointer;
 }
 
 .window-header button:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #333;
 }
 
-
-/* ================= WELCOME ================= */
-
 .window-content {
-    padding: 25px;
+    padding: 20px;
 }
 
 .welcome-content h2 {
     margin-top: 0;
-    font-size: 27px;
+    font-size: 23px;
 }
 
 .welcome-content p {
-    color: #aeb8ca;
-    line-height: 1.6;
+    color: #aaa;
+    line-height: 1.5;
 }
 
 .info-card {
-    margin-top: 25px;
+    margin-top: 20px;
+    padding: 14px;
 
-    padding: 18px;
-
-    border-radius: 10px;
-
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.info-card strong {
-    font-size: 15px;
+    background: #1c1c1c;
+    border: 1px solid #333;
 }
 
 .info-card p {
@@ -335,405 +266,356 @@ textarea {
     font-size: 12px;
 }
 
-
-/* ================= NOTES ================= */
-
 .notes-layout {
     display: flex;
-    height: 390px;
+    height: 370px;
 }
 
 .notes-sidebar {
-    width: 180px;
+    width: 165px;
+    padding: 10px;
 
-    padding: 12px;
-
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid #333;
 
     overflow-y: auto;
 }
 
 .new-note {
     width: 100%;
+    padding: 8px;
 
-    padding: 9px;
-
-    border: none;
-    border-radius: 8px;
-
+    border: 0;
     background: white;
-    color: #111;
+    color: black;
 
     cursor: pointer;
-
-    font-weight: bold;
 }
 
 .note-item {
-    padding: 11px 8px;
-
-    margin-top: 8px;
-
-    border-radius: 7px;
+    margin-top: 7px;
+    padding: 9px;
 
     cursor: pointer;
 
-    color: #b8c1d1;
-
+    color: #aaa;
     font-size: 13px;
 }
 
 .note-item:hover,
 .note-item.active {
-    background: rgba(255, 255, 255, 0.08);
+    background: #242424;
     color: white;
 }
 
 .notes-main {
     flex: 1;
 
-    padding: 18px;
+    padding: 14px;
 
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 9px;
 }
 
 .notes-main input,
 .notes-main textarea {
     width: 100%;
 
-    border: none;
+    border: 1px solid #333;
     outline: none;
 
+    background: #1c1c1c;
     color: white;
 
-    background: rgba(255, 255, 255, 0.05);
-
-    border-radius: 8px;
-
-    padding: 11px;
+    padding: 9px;
 }
 
 .notes-main input {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
 }
 
 .notes-main textarea {
     flex: 1;
-
     resize: none;
-
-    line-height: 1.5;
 }
 
 .save-button {
     align-self: flex-end;
 
-    border: none;
-    border-radius: 8px;
+    padding: 8px 14px;
 
-    padding: 9px 17px;
-
+    border: 0;
     background: white;
-    color: #111;
+    color: black;
 
     cursor: pointer;
-
-    font-weight: bold;
 }
 
-
-/* ================= CALCULATOR ================= */
-
 .calculator {
-    padding: 18px;
+    padding: 14px;
 }
 
 #calc-display {
     width: 100%;
 
-    padding: 15px;
+    padding: 12px;
+    margin-bottom: 9px;
 
-    margin-bottom: 12px;
+    border: 1px solid #333;
 
-    border: none;
-    border-radius: 9px;
-
-    background: #080b12;
-
+    background: #090909;
     color: white;
 
     text-align: right;
-
-    font-size: 25px;
+    font-size: 23px;
 }
 
 .calc-buttons {
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
-    gap: 8px;
+    gap: 5px;
 }
 
 .calc-buttons button {
-    height: 52px;
+    height: 46px;
 
-    border: none;
-    border-radius: 9px;
-
-    background: rgba(255, 255, 255, 0.08);
-
+    border: 1px solid #333;
+    background: #1d1d1d;
     color: white;
-
-    font-size: 17px;
 
     cursor: pointer;
 }
 
 .calc-buttons button:hover {
-    background: rgba(255, 255, 255, 0.17);
+    background: #292929;
 }
 
 .calc-buttons .zero {
     grid-column: span 4;
 }
 
-
-/* ================= FOCUS ================= */
-
 .focus-content {
-    padding: 30px;
-
+    padding: 25px;
     text-align: center;
 }
 
 .focus-label {
-    color: #8995aa;
-
-    font-size: 11px;
-
-    letter-spacing: 4px;
+    color: #999;
+    font-size: 10px;
 }
 
 #timer {
-    font-size: 65px;
-
+    margin: 18px 0 22px;
+    font-size: 58px;
     font-weight: bold;
-
-    margin: 20px 0 25px;
 }
 
 .focus-buttons {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .focus-buttons button {
-    padding: 9px 15px;
+    padding: 8px 13px;
 
-    border: none;
-    border-radius: 8px;
-
-    background: rgba(255, 255, 255, 0.1);
-
+    border: 1px solid #333;
+    background: #1d1d1d;
     color: white;
 
     cursor: pointer;
 }
 
 .focus-buttons button:hover {
-    background: rgba(255, 255, 255, 0.18);
+    background: #292929;
 }
 
-
-/* ================= PROJECTS ================= */
-
 .projects-content {
-    padding: 20px;
+    padding: 15px;
 
     display: flex;
     flex-direction: column;
-
-    gap: 12px;
+    gap: 8px;
 }
 
 .project-card {
-    padding: 16px;
+    padding: 13px;
 
-    border-radius: 10px;
-
-    background: rgba(255, 255, 255, 0.05);
-
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: #1b1b1b;
+    border: 1px solid #333;
 }
 
 .project-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .project-top h3 {
     margin: 0;
-
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .project-top span {
     font-size: 9px;
-
-    letter-spacing: 1px;
-
-    color: #9da8bb;
+    color: #999;
 }
 
 .project-card p {
-    color: #aeb8c9;
-
-    line-height: 1.5;
-
+    color: #aaa;
     font-size: 13px;
+    line-height: 1.5;
 }
 
 .project-card small {
-    color: #7f8ba0;
+    color: #777;
 }
-
-
-/* ================= NOTIFICATION ================= */
 
 #notification {
     position: absolute;
+    top: 65px;
+    right: 15px;
 
-    top: 75px;
-    right: 20px;
-
-    width: 230px;
-
-    padding: 14px;
-
-    border-radius: 10px;
-
-    background: rgba(20, 25, 37, 0.95);
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 210px;
+    padding: 11px;
 
     display: none;
+
+    background: #171717;
+    border: 1px solid #444;
 
     z-index: 2000;
 }
 
 #notification strong {
     display: block;
-
-    font-size: 13px;
-
-    margin-bottom: 5px;
-}
-
-#notification-text {
-    color: #aeb8c9;
-
+    margin-bottom: 4px;
     font-size: 12px;
 }
 
+#notification-text {
+    color: #aaa;
+    font-size: 12px;
+}
 
-/* ================= LIGHT MODE ================= */
+body.light {
+    background: #eee;
+    color: #111;
+}
 
 body.light #desktop {
-    background:
-        radial-gradient(circle at 15% 20%, #dce8ff, transparent 35%),
-        radial-gradient(circle at 85% 75%, #e8e2ff, transparent 35%),
-        #eef1f7;
-
-    color: #151922;
+    background-image: none;
+    background-color: #eee;
 }
 
 body.light #topbar {
-    background: rgba(245, 247, 252, 0.9);
-
-    border-color: rgba(0, 0, 0, 0.1);
+    background: #f5f5f5;
+    border-color: #ccc;
 }
 
 body.light .brand {
-    color: #151922;
+    color: #111;
 }
 
 body.light .top-info {
-    color: #596274;
+    color: #555;
 }
 
+body.light .welcome-text p,
 body.light .welcome-text span {
-    color: #596274;
+    color: #555;
 }
 
-body.light .welcome-text p {
-    color: #667085;
+body.light .icon-box {
+    background: #f5f5f5;
+    border-color: #bbb;
+    color: #111;
+}
+
+body.light .app-icon {
+    color: #222;
+}
+
+body.light #dock {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+body.light #dock button {
+    background: #e5e5e5;
+    color: #111;
 }
 
 body.light .window {
-    background: rgba(248, 249, 252, 0.97);
-
-    color: #151922;
+    background: #f7f7f7;
+    color: #111;
+    border-color: #bbb;
 }
 
 body.light .window-header {
-    background: rgba(0, 0, 0, 0.04);
-
-    border-color: rgba(0, 0, 0, 0.1);
+    background: #e9e9e9;
+    border-color: #ccc;
 }
 
-body.light .window-header button,
-body.light #dock button,
-body.light .calc-buttons button,
-body.light .focus-buttons button {
-    color: #151922;
-
-    background: rgba(0, 0, 0, 0.06);
+body.light .window-header button {
+    color: #111;
 }
 
 body.light .welcome-content p,
 body.light .project-card p {
-    color: #596274;
+    color: #555;
 }
 
 body.light .info-card,
 body.light .project-card {
-    background: rgba(0, 0, 0, 0.04);
+    background: #e9e9e9;
+    border-color: #ccc;
 }
 
 body.light .notes-sidebar {
-    border-color: rgba(0, 0, 0, 0.1);
+    border-color: #ccc;
+}
+
+body.light .note-item {
+    color: #555;
+}
+
+body.light .note-item:hover,
+body.light .note-item.active {
+    background: #ddd;
+    color: #111;
 }
 
 body.light .notes-main input,
 body.light .notes-main textarea {
-    color: #151922;
-
-    background: rgba(0, 0, 0, 0.05);
+    background: white;
+    color: #111;
+    border-color: #ccc;
 }
 
-body.light #calc-display {
-    color: white;
+body.light .calc-buttons button,
+body.light .focus-buttons button {
+    background: #e5e5e5;
+    color: #111;
+    border-color: #ccc;
 }
 
+body.light #notification {
+    background: white;
+    border-color: #ccc;
+}
 
-/* ================= MOBILE ================= */
+body.light #notification-text {
+    color: #555;
+}
 
 @media (max-width: 700px) {
-
     .welcome-text h1 {
-        font-size: 48px;
+        font-size: 45px;
     }
 
     .desktop-icons {
-        left: 10px;
+        left: 8px;
     }
 
     .window {
@@ -746,7 +628,6 @@ body.light #calc-display {
     }
 
     #dock {
-        bottom: 12px;
+        bottom: 10px;
     }
-
 }
