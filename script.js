@@ -1,105 +1,81 @@
-/* ================= CLOCK ================= */
-
 function updateClock() {
-
     let now = new Date();
 
-    let time = now.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-    });
+    document.getElementById("time").textContent =
+        now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
 
-    let date = now.toLocaleDateString([], {
-        weekday: "short",
-        month: "short",
-        day: "numeric"
-    });
-
-    document.getElementById("time").textContent = time;
-    document.getElementById("date").textContent = date;
+    document.getElementById("date").textContent =
+        now.toLocaleDateString([], {
+            weekday: "short",
+            month: "short",
+            day: "numeric"
+        });
 }
 
 updateClock();
-
 setInterval(updateClock, 1000);
 
 
-/* ================= WINDOWS ================= */
-
 let biggestIndex = 10;
 
+
 function openWindow(name) {
+    let win = document.getElementById(name + "-window");
 
-    let windowElement = document.getElementById(name + "-window");
-
-    if (!windowElement) {
+    if (!win) {
         return;
     }
 
-    windowElement.style.display = "block";
+    win.style.display = "block";
 
     biggestIndex++;
+    win.style.zIndex = biggestIndex;
 
-    windowElement.style.zIndex = biggestIndex;
-
-    showNotification(name.charAt(0).toUpperCase() + name.slice(1) + " opened");
+    showNotification(name + " opened");
 }
 
 
 function closeWindow(name) {
+    let win = document.getElementById(name + "-window");
 
-    let windowElement = document.getElementById(name + "-window");
-
-    if (!windowElement) {
+    if (!win) {
         return;
     }
 
-    windowElement.style.display = "none";
+    win.style.display = "none";
 }
-
-
-/* ================= BRING WINDOW TO FRONT ================= */
-
-document.querySelectorAll(".window").forEach(function(windowElement) {
-
-    windowElement.addEventListener("mousedown", function() {
-
-        biggestIndex++;
-
-        windowElement.style.zIndex = biggestIndex;
-
-    });
-
-});
-
-
-/* ================= DRAGGING ================= */
 
 let windows = document.querySelectorAll(".window");
 
-windows.forEach(function(windowElement) {
+windows.forEach(function(win) {
 
-    let header = windowElement.querySelector(".window-header");
+    let header = win.querySelector(".window-header");
 
     let moving = false;
-
     let offsetX = 0;
     let offsetY = 0;
+
+
+    win.addEventListener("mousedown", function() {
+        biggestIndex++;
+        win.style.zIndex = biggestIndex;
+    });
 
 
     header.addEventListener("mousedown", function(event) {
 
         moving = true;
 
-        let rect = windowElement.getBoundingClientRect();
+        let rect = win.getBoundingClientRect();
 
         offsetX = event.clientX - rect.left;
         offsetY = event.clientY - rect.top;
 
         biggestIndex++;
-
-        windowElement.style.zIndex = biggestIndex;
-
+        win.style.zIndex = biggestIndex;
     });
 
 
@@ -109,27 +85,17 @@ windows.forEach(function(windowElement) {
             return;
         }
 
-        let x = event.clientX - offsetX;
-        let y = event.clientY - offsetY;
-
-        windowElement.style.left = x + "px";
-        windowElement.style.top = y + "px";
-
-        windowElement.style.transform = "none";
-
+        win.style.left = event.clientX - offsetX + "px";
+        win.style.top = event.clientY - offsetY + "px";
+        win.style.transform = "none";
     });
 
 
     document.addEventListener("mouseup", function() {
-
         moving = false;
-
     });
 
 });
-
-
-/* ================= DESKTOP ICONS ================= */
 
 let icons = document.querySelectorAll(".app-icon");
 
@@ -137,26 +103,26 @@ icons.forEach(function(icon) {
 
     icon.addEventListener("click", function() {
 
-        icons.forEach(function(otherIcon) {
-            otherIcon.classList.remove("selected");
+        icons.forEach(function(other) {
+            other.classList.remove("selected");
         });
 
         icon.classList.add("selected");
 
-        let windowName = icon.getAttribute("data-window");
+        let name = icon.getAttribute("data-window");
 
-        openWindow(windowName);
-
+        openWindow(name);
     });
 
 });
 
-
-/* ================= NOTES ================= */
-
 let notes = JSON.parse(localStorage.getItem("novaNotes")) || [];
-
 let currentNote = 0;
+
+
+function saveNotesToStorage() {
+    localStorage.setItem("novaNotes", JSON.stringify(notes));
+}
 
 
 function loadNotes() {
@@ -168,15 +134,12 @@ function loadNotes() {
 
     if (notes.length === 0) {
 
-        let firstNote = {
+        notes.push({
             title: "Welcome Note",
             content: "This is your NOVA notes app. Create something!"
-        };
-
-        notes.push(firstNote);
+        });
 
         saveNotesToStorage();
-
     }
 
 
@@ -185,17 +148,15 @@ function loadNotes() {
         let item = document.createElement("div");
 
         item.className = "note-item";
-
         item.textContent = note.title || "Untitled";
 
+
         item.addEventListener("click", function() {
-
             selectNote(index);
-
         });
 
-        list.appendChild(item);
 
+        list.appendChild(item);
     });
 
 
@@ -211,11 +172,8 @@ function selectNote(index) {
 
     currentNote = index;
 
-    document.getElementById("note-title").value =
-        notes[index].title;
-
-    document.getElementById("note-content").value =
-        notes[index].content;
+    document.getElementById("note-title").value = notes[index].title;
+    document.getElementById("note-content").value = notes[index].content;
 
 
     let items = document.querySelectorAll(".note-item");
@@ -223,6 +181,7 @@ function selectNote(index) {
     items.forEach(function(item) {
         item.classList.remove("active");
     });
+
 
     if (items[index]) {
         items[index].classList.add("active");
@@ -240,7 +199,6 @@ function addNote() {
     currentNote = notes.length - 1;
 
     saveNotesToStorage();
-
     loadNotes();
 
     showNotification("New note created");
@@ -260,27 +218,13 @@ function saveNote() {
         document.getElementById("note-content").value;
 
     saveNotesToStorage();
-
     loadNotes();
 
     showNotification("Note saved");
 }
 
 
-function saveNotesToStorage() {
-
-    localStorage.setItem(
-        "novaNotes",
-        JSON.stringify(notes)
-    );
-
-}
-
-
 loadNotes();
-
-
-/* ================= CALCULATOR ================= */
 
 let calculatorValue = "0";
 
@@ -331,26 +275,18 @@ function calculate() {
     }
 }
 
-
-/* ================= FOCUS TIMER ================= */
-
 let focusSeconds = 25 * 60;
-
 let focusInterval = null;
 
 
 function updateTimer() {
 
     let minutes = Math.floor(focusSeconds / 60);
-
     let seconds = focusSeconds % 60;
 
-    let displayMinutes = String(minutes).padStart(2, "0");
-
-    let displaySeconds = String(seconds).padStart(2, "0");
-
     document.getElementById("timer").textContent =
-        displayMinutes + ":" + displaySeconds;
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
 }
 
 
@@ -365,30 +301,24 @@ function startTimer() {
         if (focusSeconds > 0) {
 
             focusSeconds--;
-
             updateTimer();
 
         } else {
 
             clearInterval(focusInterval);
-
             focusInterval = null;
 
             showNotification("Focus session complete!");
-
         }
 
     }, 1000);
-
 }
 
 
 function pauseTimer() {
 
     clearInterval(focusInterval);
-
     focusInterval = null;
-
 }
 
 
@@ -397,18 +327,13 @@ function resetTimer() {
     clearInterval(focusInterval);
 
     focusInterval = null;
-
     focusSeconds = 25 * 60;
 
     updateTimer();
-
 }
 
 
 updateTimer();
-
-
-/* ================= THEME ================= */
 
 function toggleTheme() {
 
@@ -417,28 +342,19 @@ function toggleTheme() {
     if (document.body.classList.contains("light")) {
 
         localStorage.setItem("novaTheme", "light");
-
         showNotification("Light mode enabled");
 
     } else {
 
         localStorage.setItem("novaTheme", "dark");
-
         showNotification("Dark mode enabled");
-
     }
-
 }
 
 
 if (localStorage.getItem("novaTheme") === "light") {
-
     document.body.classList.add("light");
-
 }
-
-
-/* ================= NOTIFICATIONS ================= */
 
 let notificationTimeout;
 
@@ -460,26 +376,17 @@ function showNotification(message) {
 
 
     notificationTimeout = setTimeout(function() {
-
         notification.style.display = "none";
-
     }, 2500);
-
 }
-
-
-/* ============ KEYBOARD SHORTCUTS ============ */
 
 document.addEventListener("keydown", function(event) {
 
     if (event.key === "Escape") {
 
-        document.querySelectorAll(".window").forEach(function(windowElement) {
-
-            windowElement.style.display = "none";
-
+        document.querySelectorAll(".window").forEach(function(win) {
+            win.style.display = "none";
         });
-
     }
 
 });
